@@ -21,3 +21,28 @@
 
     <h2>Inicio de sesión de usuarios</h2>
 
+    <input type="text" id="usuario" placeholder="Ingrese su usuario"><br>
+    <input type="password" id="password" placeholder="Ingrese su contraseña"><br>
+    <button onclick="login()">Ingresar</button>
+
+    <p id="mensaje"></p>
+
+    <script>
+        function login() {
+            let user = document.getElementById("usuario").value;
+            let pass = document.getElementById("password").value;
+
+            if(user === "" || pass === ""){
+                document.getElementById("mensaje").innerText = "Por favor, complete todos los campos.";
+            } else if(user === "admin" && pass === "1234"){
+                document.getElementById("mensaje").innerText = "Inicio de sesión exitoso. Bienvenido.";
+            } else {
+                document.getElementById("mensaje").innerText = "Usuario o contraseña incorrectos.";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
