@@ -80,22 +80,38 @@
     </div>
 
     <script>
-        function login() {
-            let user = document.getElementById("usuario").value;
-            let pass = document.getElementById("password").value;
-            let mensaje = document.getElementById("mensaje");
+        function validarCredenciales(usuario, password){
+    if(usuario === "" || password === ""){
+        return "VACIO";
+    } else if(usuario === "admin" && password === "1234"){
+        return "OK";
+    } else {
+        return "ERROR";
+    }
+}
+ console.log("Prueba 1:", validarCredenciales("admin", "1234") === "OK" ? "Aprobado" : "Fallo");
+    console.log("Prueba 2:", validarCredenciales("admin", "0000") === "ERROR" ? "Aprobado" : "Fallo");
+    console.log("Prueba 3:", validarCredenciales("", "") === "VACIO" ? "Aprobado" : "Fallo");
 
-            if(user === "" || pass === ""){
-                mensaje.innerText = "Por favor, complete todos los campos.";
-                mensaje.className = "error";
-            } else if(user === "admin" && pass === "1234"){
-                mensaje.innerText = "Inicio de sesión exitoso. Bienvenido.";
-                mensaje.className = "success";
-            } else {
-                mensaje.innerText = "Usuario o contraseña incorrectos.";
-                mensaje.className = "error";
-            }
-        }
+        function login() {
+    let user = document.getElementById("usuario").value;
+    let pass = document.getElementById("password").value;
+    let mensaje = document.getElementById("mensaje");
+
+    let resultado = validarCredenciales(user, pass);
+
+    if(resultado === "VACIO"){
+        mensaje.innerText = "Por favor, complete todos los campos.";
+        mensaje.className = "error";
+    } else if(resultado === "OK"){
+        mensaje.innerText = "Inicio de sesión exitoso. Bienvenido.";
+        mensaje.className = "success";
+    } else {
+        mensaje.innerText = "Usuario o contraseña incorrectos.";
+        mensaje.className = "error";
+    }
+}
+
     </script>
 
 </body>
