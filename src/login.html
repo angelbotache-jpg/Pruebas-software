@@ -1,49 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Autenticación</title>
+
     <style>
         body {
-            font-family: Arial;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
             text-align: center;
-            margin-top: 100px;
+            width: 300px;
         }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
         input {
-            margin: 5px;
-            padding: 8px;
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
+
         button {
-            padding: 8px 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #3a8dde;
+        }
+
+        #mensaje {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
         }
     </style>
 </head>
+
 <body>
 
-    <h2>Inicio de sesión de usuarios</h2>
+    <div class="login-container">
+        <h2>Inicio de sesión</h2>
 
-    <input type="text" id="usuario" placeholder="Ingrese su usuario"><br>
-    <input type="password" id="password" placeholder="Ingrese su contraseña"><br>
-    <button onclick="login()">Ingresar</button>
+        <input type="text" id="usuario" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
 
-    <p id="mensaje"></p>
+        <button onclick="login()">Ingresar</button>
+
+        <p id="mensaje"></p>
+    </div>
 
     <script>
         function login() {
             let user = document.getElementById("usuario").value;
             let pass = document.getElementById("password").value;
+            let mensaje = document.getElementById("mensaje");
 
             if(user === "" || pass === ""){
-                document.getElementById("mensaje").innerText = "Por favor, complete todos los campos.";
+                mensaje.innerText = "Por favor, complete todos los campos.";
+                mensaje.className = "error";
             } else if(user === "admin" && pass === "1234"){
-                document.getElementById("mensaje").innerText = "Inicio de sesión exitoso. Bienvenido.";
+                mensaje.innerText = "Inicio de sesión exitoso. Bienvenido.";
+                mensaje.className = "success";
             } else {
-                document.getElementById("mensaje").innerText = "Usuario o contraseña incorrectos.";
+                mensaje.innerText = "Usuario o contraseña incorrectos.";
+                mensaje.className = "error";
             }
         }
     </script>
 
 </body>
 </html>
+
 
 
